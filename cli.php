@@ -1,9 +1,8 @@
 <?php
 
 use App\Cli\Color;
-use App\Config\Request;
-
 use App\Controller\Start;
+use Mateodioev\Request\Request;
 
 require __DIR__ . '/vendor/autoload.php';
 
