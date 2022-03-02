@@ -1,0 +1,8 @@
+vendor/
+tests/
+
+
+composer.lock
+.env
+
+*.log
