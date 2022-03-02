@@ -12,6 +12,7 @@
         "php-parallel-lint/php-console-color": "^1.0",
         "guzzlehttp/guzzle": "^7.4",
         "mateodioev/db": "dev-master",
-        "mateodioev/request": "dev-master"
+        "mateodioev/request": "dev-master",
+        "mateodioev/translate": "dev-master"
     }
 }
