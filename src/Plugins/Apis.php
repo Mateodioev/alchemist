@@ -2,8 +2,7 @@
 
 namespace App\Plugins;
 
-use App\Config\Request;
-use App\Models\Chat;
+use Mateodioev\Request\Request;
 
 class Apis
 {
