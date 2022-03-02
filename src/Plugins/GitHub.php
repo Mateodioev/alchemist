@@ -2,7 +2,7 @@
 
 namespace App\Plugins;
 
-use App\Config\Request;
+use Mateodioev\Request\Request;
 
 class GitHub
 {
@@ -14,12 +14,12 @@ class GitHub
   public static function Endpoint(string $endpoint)
   {
     Request::Init(self::API . $endpoint);
-    Request::AddOpt([CURLOPT_HTTPHEADER => [
+    Request::addHeaders([
       "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
       "Accept-Language: es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3",
       "Host: api.github.com",
       "User-Agent:Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0"
-    ]]);
+    ]);
     
     return Request::Run();
   }
