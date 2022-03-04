@@ -154,34 +154,24 @@ class Senders extends Apis
   }
 
   /**
-   * Translate text using google translate
+   * Translate text using google or yandex translate
+   * @param string      $use google or yandex
+   * @param string|null $api_key Yandex api key
    */
-  public function Translate($bot, $up, string $msg)
+  public function Translate($bot, $up, string $msg, string $use = 'google', ?string $api_key=null)
   {
-    $eval = empty($msg) && !isset($up->message->reply_to_message->text);
-    $this->Down($eval, $bot, b('λ '.i('Translate Messages').n().'Format: ').code('/tr lang_code Text'));
+    $tr = new Tr;
+    $tr->ParseStr($up, $msg);
+    
+    $this->Down(empty($tr->txt), $bot, b('λ '.i('Translate Messages').n().'Format: ').code('/tr lang_code Text'));
 
-    $lang_co = Utils::MultiExplode([' ', "\n"], $msg)[0];
-    $lang_code = explode('|', $lang_co);
-
-    $lang_input = $lang_code[0] ?? 'auto';
-    $lang_output = $lang_code[1] ?? 'es';
-
-    if (!isset($lang_code[1])) {
-      $lang_input = 'auto';
-      $lang_output = $lang_code[0];
-    }
-    $lang_output = (empty($lang_output)) ? 'es' : $lang_output;
-    $textTr = $up->message->reply_to_message->caption ?? $up->message->reply_to_message->text ?? trim(substr($msg, strlen($lang_co))); // Reply message o message simple
-
-    $tr = new Translate();
     try {
-      $tr->google($textTr, $lang_input, $lang_output);
+      $res = $tr->Get($use, $api_key);
     } catch (\Exception $e) {
       $bot->SendMsg(b(i($e->getMessage()))); return;
     }
-    if ($tr->error) {$bot->SendMsg(b(i($tr->error_msg))); return;}
+    if ($res->error) {$bot->SendMsg(b(i($res->error_msg))); return;}
 
-    $bot->SendMsg(b(i('Translate: ').$tr->getLangName('input').' → '.$tr->getLangName()).n().'~ '.$tr->getText());
+    $bot->SendMsg(b(i('Translate: ').$res->getLangName('input').' → '.$res->getLangName()).n().'~ '.$res->getText());
   }
 }
