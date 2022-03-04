@@ -163,7 +163,7 @@ class Senders extends Apis
     $tr = new Tr;
     $tr->ParseStr($up, $msg);
     
-    $this->Down(empty($tr->txt), $bot, b('λ '.i('Translate Messages').n().'Format: ').code('/tr lang_code Text'));
+    $this->Down(empty($tr->txt), $bot, b('λ '.i('Translate Messages with '.ucfirst($use)).n().'Format: ').code('/tr lang_code Text'));
 
     try {
       $res = $tr->Get($use, $api_key);
