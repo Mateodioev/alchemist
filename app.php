@@ -18,8 +18,8 @@ $cmd->HearTxt(['cat', 'gato'], '\App\Plugins\Senders@Gato', [$bot]);
 $cmd->HearTxt(['dog', 'perro'], '\App\Plugins\Senders@Perro', [$bot]);
 $cmd->HearTxt(['fox', 'zorro'], '\App\Plugins\Senders@Zorro', [$bot]);
 
+$cmd->HearTxt('ty', '\App\Plugins\Senders@Translate', [$bot, $up, $chat::getContent(4), 'yandex', $_ENV['YANDEX_TR']]);
 $cmd->HearTxt('tr', '\App\Plugins\Senders@Translate', [$bot, $up, $chat::getContent(4)]);
-$cmd->HearTxt('ty', '\App\Plugins\Senders@Translate', [$bot, $up, $chat::getContent(4), 'yandex', $_ENV['YANDEX_API_KEY']]);
 $cmd->HearTxt('ip', '\App\Plugins\Senders@getIp', [$bot, $chat::getContent(4)]);
 $cmd->HearTxt('git', '\App\Plugins\Senders@Github', [$bot, $chat::getContent(5)]);
 $cmd->HearTxt('bin', '\App\Plugins\Senders@Bin', [$bot, $chat::getContent(5)]);
