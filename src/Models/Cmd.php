@@ -134,7 +134,7 @@ class Cmd
       return;
     }
     
-    if (isset($this->up->message)) {
+    if (isset($this->up->message->text)) {
       // Message text
       $msg = $this->up->message;
       $txt = $msg->text;
