@@ -8,6 +8,7 @@ class Cmd
 {
   private array $separators;
   private $up;
+  private $debug_mode = false;
 
   protected $registry = [
     'txt' => [], // Text commands
@@ -59,6 +60,7 @@ class Cmd
     // Only register if callable is valid
     if (is_callable($callable)) {
       foreach ($cmd as $name) {
+        $this->Debug("Registering $type command: $name\n");
         $this->registry[$type][$name] = ['call' => $callable, 'vars' => $vars];
       }
     } else {
@@ -110,6 +112,7 @@ class Cmd
   {
     if (in_array($cmd, array_keys($this->registry[$type]))) {
       $call = $this->registry[$type][$cmd];
+      $this->Debug("Calling " . $cmd . "\n");
       call_user_func_array($call['call'], $call['vars']);
     }
   }
@@ -117,6 +120,7 @@ class Cmd
   public function Run()
   {
     if (isset($this->up->callback_query)) {
+      $this->Debug("\nCallback query\n");
       // Callback query
       $callback = $this->up->callback_query;
       $data = $callback->data;
@@ -126,6 +130,7 @@ class Cmd
     }
 
     if (isset($this->up->inline_query)) {
+      $this->Debug("\nInline query\n");
       // Inline query
       $inline = $this->up->inline_query;
       $query = $inline->query;
@@ -135,6 +140,7 @@ class Cmd
     }
     
     if (isset($this->up->message->text)) {
+      $this->Debug("\nMessage text\n");
       // Message text
       $msg = $this->up->message;
       $txt = $msg->text;
@@ -142,6 +148,24 @@ class Cmd
       $this->CallToFunc($cmd, 'txt');
       return;
     }
-    echo "No command found\n";
+    $this->Debug("\nNo command found\n");
+  }
+
+  /**
+   * Active/Desactive debug mode
+   */
+  public function SetDebug(bool $set = false):void
+  {
+    $this->debug_mode = $set;
+  }
+
+  /**
+   * Print a message if debug mode is enabled
+   */
+  public function Debug($data):void
+  {
+    if ($this->debug_mode) {
+      print_r($data);
+    }
   }
 }
