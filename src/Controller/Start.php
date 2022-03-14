@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Cli\App;
 use App\Config\Logger;
-use App\Models\{Bot, Chat, Cmd};
-
+use App\Models\{Bot, BotCoreInline, Chat, Cmd};
 use Mateodioev\Db\{Connection, Query};
 
 class Start {
 
+  public $inline;
   public $chat;
   public $bot;
   public $cmd;
@@ -20,13 +20,13 @@ class Start {
   private string $path;
   public string $path_log;
 
-  public function __construct(string  $app_path, bool $use_db = true, bool $use_cli = false)
+  public function __construct(string  $app_path, bool $use_db = true, bool $use_cli = false, bool $use_inline = false)
   {
     $dotenv = \Dotenv\Dotenv::createImmutable($app_path);
     $dotenv->load();
 
     $this->path = $app_path;
-    $this->path_log = $this->path . '/logs/php-error.log';
+    $this->path_log = $this->path . '/logs/'.date('d-m-y ').'php-error.log';
     $this->Server($_ENV['TIME_ZONE']);
 
     $this->bot = new Bot($_ENV['BOT_TOKEN']);
@@ -36,6 +36,7 @@ class Start {
     
     if ($use_db) $this->prepareDb();
     if ($use_cli) $this->Cli();
+    if ($use_inline) $this->inline = new BotCoreInline;
   }
 
   /**

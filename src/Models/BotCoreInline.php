@@ -52,7 +52,6 @@ class BotCoreInline {
    * @param string|null $thumb Optional. Url of the thumbnail for the result
    * @param string|null $url Optional. URL of the result
    * @param boolean $hide_url Optional. Pass True, if you don't want the URL to be shown in the message
-   * @param string|null $id Unique identifier for this result, 1-64 Bytes
    */
   public function Article(string $title, array $message, string $desc=null, string $thumb=null, string $url=null, bool $hide_url = true, string $id=null): array
   {

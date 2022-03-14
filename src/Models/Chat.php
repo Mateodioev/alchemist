@@ -97,10 +97,10 @@ class Chat {
   /**
    * Get Inline query id for answer query
    */
-  public function getInlineId($up=null): string
+  public static function getInlineId($up=null): string
   {
     self::SetUp($up);
-    return $up->inline_query->id
+    return self::$up->inline_query->id
       ?? '';
   }
 }

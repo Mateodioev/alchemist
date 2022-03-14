@@ -158,13 +158,13 @@ class Bot extends BotCore {
    * @param string $inline_query_id Unique identifier for the answered query
    * @param array $results A JSON-serialized array of results for the inline query
    */
-  public function answerInlineQuery(string $inline_query_id, ?array $results=null, ?string $cache_time=null, ?string $is_personal=null)
+  public function answerInlineQuery(?array $results=null, ?string $inline_query_id=null, ?string $cache_time=null, ?string $is_personal=null)
   {
     if (is_array($results) && !is_null($results) && count($results) > 50) {
       throw new \Exception("No more than 50 results per query are allowed.");
     }
     $payload = [
-      'inline_query_id' => $inline_query_id,
+      'inline_query_id' => $inline_query_id ?? Chat::getInlineId(),
       'results' => json_encode($results),
       'cache_time' => $cache_time,
       'is_personal' => $is_personal
