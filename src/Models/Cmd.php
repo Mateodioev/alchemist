@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Config\Utils;
+use App\Plugins\{Senders, Inline};
 
 class Cmd
 {
@@ -164,8 +165,47 @@ class Cmd
    */
   public function Debug($data):void
   {
-    if ($this->debug_mode) {
-      print_r($data);
+    if (!$this->debug_mode) return;
+    if (php_sapi_name() != 'cli') {
+      $data = Utils::RemoveNoAlpha($data);
+    }
+    print_r($data);
+  }
+
+  /**
+   * Default txt commands
+   * - Cmds: axoltl, ajolote, cat, gato, dog, perro, fox, zorro, ty, tr, ip, git, bin
+   */
+  public function RegisterDefaultTxt(Bot $bot, $up, Chat $chat)
+  {
+    try {
+      $this->HearTxt(['axoltl', 'ajolote'], [Senders::class, 'Ajolote'], [$bot]);
+      $this->HearTxt(['cat', 'gato'], [Senders::class, 'Gato'], [$bot]);
+      $this->HearTxt(['dog', 'perro'], [Senders::class, 'Perro'], [$bot]);
+      $this->HearTxt(['fox', 'zorro'], [Senders::class, 'Zorro'], [$bot]);
+      $this->HearTxt('ty', [Senders::class, 'Translate'], [$bot, $up, $chat::getContent(4), 'yandex', $_ENV['YANDEX_TR']]);
+      $this->HearTxt('tr', [Senders::class, 'Translate'], [$bot, $up, $chat::getContent(4)]);
+      $this->HearTxt('ip', [Senders::class, 'getIp'], [$bot, $chat::getContent(4)]);
+      $this->HearTxt('git', [Senders::class, 'Github'], [$bot, $chat::getContent(5)]);
+      $this->HearTxt('bin', [Senders::class, 'Bin'], [$bot, $chat::getContent(5)]);
+    } catch (\Exception $e) {
+      $bot->SendMsg(Utils::QuitHtml($e->getMessage()));
+      die;
+    }
+  }
+
+  /**
+   * Default inline commands
+   * - Cmds: bin
+   */
+  public function RegisterDefaultInline(Bot $bot, BotCoreInline $inline, $up, Chat $chat)
+  {
+    try {
+      $this->HearInline('bin', [Inline::class, 'SearchBin'], [$bot, $inline, $chat::getContent(4)]);
+    } catch (\Exception $e) {
+      $bot->answerInlineQuery([
+        $inline->Article('Unknow problem', $inline->InputMessageContent(Utils::QuitHtml($e->getMessage())), 'Problem')
+      ]);
     }
   }
 }
