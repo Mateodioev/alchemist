@@ -62,4 +62,15 @@ class Utils {
     return [$var];
   }
 
+  /**
+   * Valida una url y retorna la misma url, si es invalida lanza una excepción
+   */
+  public static function AddUrl(?string $url)
+  {
+    if (filter_var($url, FILTER_VALIDATE_URL) || is_null($url)) {
+      return $url;
+    }
+    throw new \Exception("Invalid url: {$url}");
+    
+  }
 }
