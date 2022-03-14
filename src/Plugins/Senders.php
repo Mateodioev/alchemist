@@ -2,10 +2,7 @@
 
 namespace App\Plugins;
 
-use App\Config\{Bin, Utils};
-
-use Mateodioev\Translate;
-
+use App\Config\Bin;
 use function App\{BoolString, b, u, i, n, code};
 
 class Senders extends Apis
