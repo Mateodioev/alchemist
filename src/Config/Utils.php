@@ -73,4 +73,13 @@ class Utils {
     throw new \Exception("Invalid url: {$url}");
     
   }
+
+  /**
+   * Eliminar todos los caracteres no alfanuméricos y mantener los espacios
+   */
+  public static function RemoveNoAlpha(?string $str=null): ?string
+  {
+    if (is_null($str)) return null;
+    return preg_replace('/[^a-zA-Z0-9\s]/', ' ', $str);
+  }
 }
