@@ -12,7 +12,7 @@ use App\Models\BotCoreInline; // Only for inline mode
 
 ## Usage
 
-Throws new exception if empty token
+Throw a new exception if the token is empty
 ```php
 $bot = new Bot('YOUR_BOT_TOKEN'); // Create bot instance
 ```
@@ -36,16 +36,17 @@ $bot->$method_name();
 
 ## Predefinide method
 
- - Note: No es necesario pasar el chat_id y msg_id, el bot lo autocomplementa
- - El button puede ser un array u objecto, despues el metodo lo convierte a json
+ - Note: It is not necessary to pass the *chat_id* and *msg_id*, the bot autocompletes it
+ - The button can be an array or object, then the method converts it to json
 
 
-Todos los metodos que no estan definidos deberan llamarse de la siguiente manera:
+All methods that are not defined should be called as follows:
 
 ```php
 $bot->method_name($parameters);
 ```
-Siendo `$parameters` un array con los datos necesarios para el metodo
+
+Being `$parameters` an array with the necessary data for the method
 
 
 ### SendAction
@@ -82,7 +83,7 @@ Send any type of file
 ```php
 $bot->Document('document', 'caption', 'chat_id', 'message_id');
 ```
- - Note: _document_ Puede ser un enlace externo o un nombre de archivo local valido
+   - Note: _document_ Can be an external link or a valid local filename
 
 ### Send Photo
 
@@ -90,13 +91,13 @@ $bot->Document('document', 'caption', 'chat_id', 'message_id');
 $bot->Photo('photo', 'caption', 'chat_id', 'message_id');
 ```
 
- - Note: _photo_ Puede ser un enlace externo o un nombre de archivo local valido
+ - Note: _photo_ Can be an external link or a valid local filename
 
 ### Send Venue
 
 ```php
-$lat = 1.1111; // Latitud
-$log = 1.1111; // Longitud
+$lat = 1.1111; // Latitude
+$log = 1.1111; // Longitude
 $bot->sendVenue($lat, $log, 'Title', 'Addres');
 ```
 
