@@ -94,4 +94,13 @@ class Chat {
     return substr(trim($txt), $cut);
   }
 
+  /**
+   * Get Inline query id for answer query
+   */
+  public function getInlineId($up=null): string
+  {
+    self::SetUp($up);
+    return $up->inline_query->id
+      ?? '';
+  }
 }
