@@ -20,9 +20,14 @@ class BotCore {
 
   /**
    * Add bot token and set api endpoint
+   * 
+   * @throws Exception
    */
   public function __construct(string $bot_token)
   {
+    if (empty($bot_token)) {
+      throw new \Exception('Bot token is empty');
+    }
     $this->token = $bot_token;
     $this->endpoint = self::API_URL . 'bot' . $this->token . '/';
     $this->file_dwn = self::API_URL . 'file/bot' . $this->token . '/';
