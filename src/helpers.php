@@ -22,28 +22,28 @@ function xQuit(string $str='') {
  * Bold
  */
 function b(string $str) {
-  return '<b>'.xQuit($str).'</b>';
+  return '<b>'.$str.'</b>';
 }
 
 /**
  * Underline
  */
 function u(string $str) {
-  return '<u>'.xQuit($str).'</u>';
+  return '<u>'.$str.'</u>';
 }
 
 /**
  * Italic
  */
 function i(string $str) {
-  return '<i>'.xQuit($str).'</i>';
+  return '<i>'.$str.'</i>';
 }
 
 /**
  * Monospace
  */
 function code(string $str) {
-  return '<code>'.xQuit($str).'</code>';
+  return '<code>'.$str.'</code>';
 }
 
 /**
