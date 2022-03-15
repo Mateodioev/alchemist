@@ -178,6 +178,7 @@ class Cmd
    */
   public function RegisterDefaultTxt(Bot $bot, $up, Chat $chat)
   {
+    $bot->setThrow(true);
     try {
       $this->HearTxt(['axoltl', 'ajolote'], [Senders::class, 'Ajolote'], [$bot]);
       $this->HearTxt(['cat', 'gato'], [Senders::class, 'Gato'], [$bot]);
@@ -200,6 +201,7 @@ class Cmd
    */
   public function RegisterDefaultInline(Bot $bot, BotCoreInline $inline, $up, Chat $chat)
   {
+    $bot->setThrow(true);
     try {
       $this->HearInline('bin', [Inline::class, 'SearchBin'], [$bot, $inline, $chat::getContent(4)]);
     } catch (\Exception $e) {

@@ -55,7 +55,7 @@ class Senders extends Apis
     $txt = '';
     if (isset($res['response'][0]->breeds[0]->name)) {
       $breed = $res['response'][0]->breeds[0];
-      $txt = '<i>~ '.$breed->name.'</i> ' . PHP_EOL . "Bred for: <i>".$breed->bred_for."</i>\nBreed group: <i>".$breed->breed_group."</i>\nLife span: <i>".$breed->life_span."</i>\nTemperament: <i>".$breed->temperament."</i>";
+      $txt = i('~ '.$breed->name.' ').n().'Bred for: '.i($breed->bred_for).n().'Breed group: '.i($breed->breed_group).n().'Life span: '.i($breed->life_span).n().'Temperament: '.i($breed->temperament);
     }
     $bot->Photo($res['response'][0]->url, $txt);
   }
@@ -116,19 +116,19 @@ class Senders extends Apis
    */
   public function getIp($bot, string $ipstr ='')
   {
-    $this->Down(empty($ipstr), $bot, 'Please put a ip address' . PHP_EOL . 'Example: <code>/ip ip</code>');
-    $this->Down(!filter_var($ipstr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6), $bot, '<i>'.$ipstr.'</i> is not a valid ip address');
+    $this->Down(empty($ipstr), $bot, 'Please put a ip address' . n() . 'Example: '.code('/ip ip'));
+    $this->Down(!filter_var($ipstr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6), $bot, i($ipstr) . ' is not a valid ip address');
 
     $ip = $this->Ip($ipstr);
     $d = $ip['response'];
-    $this->Down(isset($d->message), $bot, '<b>❌ ' . str_replace($ipstr, '<code>'.$ipstr.'</code>', @$d->message . ' :(') . '</b>');
+    $this->Down(isset($d->message), $bot, b('❌ ' . str_replace($ipstr, code($ipstr), @$d->message.' :(')));
     $th = $d->threat;
     $fdata = $d->two;
     
-    $txt = "<b>✅ Valid ip ➜ <i>%s</i> %s\nCountry:</b> <i>%s / %s</i>\n<b>Org:</b> <i>%s</i>\n<b>Type:</b> <i>%s</i>\n<b>Time/Zone:</b> <i>%s</i>\n<b>Zip-code</b> <i>%s</i>\n<b>Threat:\n - Known attacker:</b> <i>%s</i>\n <b>- Known abuser:</b> <i>%s</i>\n <b>- Anonymous:</b> <i>%s</i>\n <b>- Is threat:</b> <i>%s</i>\n <b>- Bogon:</b> <i>%s</i>\n <b>- Proxy:</b> <i>%s</i>\n <b>- Tor:</b> <i>%s</i>";
+    $txt = b('📡 Valid ip ➜ '.i('%s').n().'Country: ').i('%s / %s').n().b('Org: ').i('%s').n().b('Type: ').i('%s').n().b('Time/Zone: ').i('%s').n().b('Zip-code: ').i('%s').n().b('Threat:'.n().' - Known attacker: ').i('%s').n().b(' - Known abuser: ').i('%s').n().b(' - Anonymous: ').i('%s').n().b(' - - Is threat: ').i('%s').n(' - Bogon: ').i('%s').n().b(' - Proxy: ').i('%s').n().b(' - Tor: ').i('%s');
     $txt = sprintf($txt, $ipstr, $d->emoji_flag, $d->country_name, $d->continent_name, @$d->asn->name, ucfirst(@$d->asn->type), @$fdata->timezone, @$fdata->postal, BoolString($th->is_known_attacker), BoolString($th->is_known_abuser), BoolString($th->is_anonymous), BoolString($th->is_threat), BoolString($th->is_bogon), BoolString($th->is_proxy), BoolString($th->is_tor));
     $loc = explode(',', $fdata->loc);
-
+    
     $bot->SendMsg($txt);
     $bot->sendVenue($loc[0], $loc[1], 'IP location ➜' . $ipstr, $fdata->city.' - '.$fdata->region.' - '.$d->country_name.' - '.$d->continent_code);
   }
@@ -141,10 +141,10 @@ class Senders extends Apis
     $this->Down(empty($bin), $bot, 'Please put a bin number' . PHP_EOL . 'Example: <code>/bin 510805</code>');
     $fim = new Bin;
     $fim->Validate($bin);
-    $this->Down(!$fim->validate->ok, $bot, '<b>❌ ' . $fim->validate->msg . '</b> (<i>'.$fim->validate->bin.'</i>)');
+    $this->Down(!$fim->validate->ok, $bot, b('❌ '.$fim->validate->msg) . ' ('.i($fim->validate->bin).')');
 
     $res = $fim->BinsSu($fim->validate->bin);
-    $this->Down(!$res['ok'], $bot, '<b>❌ ' . @$res['error'] . '</b> (<i>'.$res['bin'].'</i>)');
+    $this->Down(!$res['ok'], $bot, b('❌ '.@$res['error']) . ' ('.i($res['bin']).')');
 
     $txt = b('Valid bin:').' '.u($res['bin']).n().b(i('Country:')).' '.$res['country'].' '.$res['flag'].n().b(i('Datas:')). ' ' . $res['vendor'].' - '.$res['type'].' - '.$res['level'].n().b(i('Bank:')).' '.$res['bank'];
     $bot->SendMsg($txt);
