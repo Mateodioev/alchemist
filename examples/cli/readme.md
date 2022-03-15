@@ -1,5 +1,13 @@
 # How to use CLI
 
+![The alchemist - Ed Cardone](../images/ed-cardone-gps.jpg)
+
+- [How to use CLI](#how-to-use-cli)
+  - [Namespaces](#namespaces)
+  - [App](#app)
+  - [Color](#color)
+  - [Printer](#printer)
+
 ## Namespaces
 
 ```php

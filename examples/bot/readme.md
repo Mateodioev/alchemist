@@ -1,5 +1,24 @@
 # Bot core 🤖
 
+![The alchemist - Ed Cardone](../images/ed-cardone-gps.jpg)
+
+- [Bot core 🤖](#bot-core-)
+  - [Namespaces](#namespaces)
+  - [Usage](#usage)
+  - [General format](#general-format)
+    - [Add aditional parameters](#add-aditional-parameters)
+  - [Predefinide method](#predefinide-method)
+    - [SendAction](#sendaction)
+    - [Send message](#send-message)
+    - [Edit message](#edit-message)
+    - [Delete message](#delete-message)
+    - [Send Document](#send-document)
+    - [Send Photo](#send-photo)
+    - [Send Venue](#send-venue)
+    - [Me](#me)
+    - [GetFile](#getfile)
+    - [Answer inline query](#answer-inline-query)
+
 ## Namespaces
 
 ```php

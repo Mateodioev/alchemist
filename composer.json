@@ -1,4 +1,16 @@
 {
+    "name": "mateodioev/alchemist-ace",
+    "description": "Alchemist es una librería para el desarrollo de bots en telegram, soporta inline querys(si el bot lo tiene activado), mensajes normales, y calbacks.",
+    "type": "library",
+    "keywords": [
+        "telegram",
+        "bot",
+        "inline",
+        "query",
+        "callback"
+    ],
+    "license": "MIT",
+    
     "autoload": {
         "psr-4": {
             "App\\": "src/"
@@ -14,5 +26,6 @@
         "mateodioev/db": "dev-master",
         "mateodioev/request": "dev-master",
         "mateodioev/translate": "dev-master"
-    }
+    },
+    "version": "1.0.0-alpha"
 }
