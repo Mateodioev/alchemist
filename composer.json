@@ -20,6 +20,5 @@
         "mateodioev/db": "dev-master",
         "mateodioev/request": "dev-master",
         "mateodioev/translate": "dev-master"
-    },
-    "version": "1.0.0-alpha"
+    }
 }
