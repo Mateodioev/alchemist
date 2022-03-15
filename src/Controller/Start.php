@@ -9,18 +9,18 @@ use Mateodioev\Db\{Connection, Query};
 
 class Start {
 
-  public $inline;
-  public $chat;
-  public $bot;
-  public $cmd;
-  public $cli;
-  public $up;
-  public $db;
+  public ?BotCoreInline $inline=null;
+  public Chat $chat;
+  public Bot $bot;
+  public Cmd $cmd;
+  public ?App $cli=null;
+  public ?object $up=null;
+  public ?Query $db=null;
 
   private string $path;
   public string $path_log;
 
-  public function __construct(string  $app_path, bool $use_db = true, bool $use_cli = false, bool $use_inline = false)
+  public function __construct(string $app_path, bool $use_db = true, bool $use_cli = false, bool $use_inline = false)
   {
     $dotenv = \Dotenv\Dotenv::createImmutable($app_path);
     $dotenv->load();
@@ -60,13 +60,10 @@ class Start {
   /**
    * Get cli
    */
-  public function Cli()
+  private function Cli()
   {
-    if ($this->cli != null) return $this->cli;
-    if (php_sapi_name() !== 'cli') {
-      die('This script must be run from the command line.');
+    if (php_sapi_name() === 'cli') {
+      $this->cli = new App;
     }
-    $this->cli = new App;
-    return $this->cli;
   }
 }
