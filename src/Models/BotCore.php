@@ -36,7 +36,7 @@ class BotCore {
   /**
    * Send request to telegram api
    */
-  public function request(string $method, ?array $datas=[], bool $decode = true):mixed
+  public function request(string $method, ?array $datas=[], bool $throw = false, bool $decode = true):mixed
   {
     $url = $this->endpoint . $method;
     $datas = array_merge($datas, $this->opt);
@@ -49,6 +49,9 @@ class BotCore {
       error_log('[bot] Method ' . $method . ' failed: ' . json_encode($datas));
       error_log('[bot] Response: ' . $this->res);
       error_log('[bot] Description: ' . $this->result->description);
+      if ($throw) {
+        throw new \Exception('Fail '.$method.': '.$this->result->description);
+      }
     }
     return $this->result;
   }
