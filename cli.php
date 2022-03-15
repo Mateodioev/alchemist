@@ -1,7 +1,7 @@
 <?php
 
-use App\Cli\Color;
-use App\Controller\Start;
+use Mateodioev\Alchemist\Cli\Color;
+use Mateodioev\Alchemist\Controller\Start;
 use Mateodioev\Request\Request;
 
 require __DIR__ . '/vendor/autoload.php';
