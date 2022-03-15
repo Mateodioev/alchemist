@@ -12,8 +12,8 @@ function BoolString(bool $bool, array $replace = [false => 'False', true => '❌
 /**
  * Quit html from strings
  */
-function xQuit(string $str='') {
-  if (empty($str)) return $str;
+function xQuit(?string $str=null) {
+  if (empty($str) || !$str) return $str;
   return \Mateodioev\Alchemist\Config\Utils::QuitHtml($str);
 }
 

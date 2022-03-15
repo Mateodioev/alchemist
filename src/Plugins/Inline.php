@@ -21,14 +21,14 @@ class Inline {
    */
   public function SearchBin(Bot $bot, BotCoreInline $inline, string $bin)
   {
-    $this->Down(empty($bin), $bot, $inline, 'Please put one bin', 'Please put a bin number' . PHP_EOL . 'Example: <code>/bin 510805</code>');
+    $this->Down(empty($bin), $bot, $inline, 'Please put one bin', 'Please put a bin number' . PHP_EOL . 'Example: '.code('/bin 510805'));
     $fim = new Bin;
     $fim->Validate($bin);
     $this->Down(!$fim->validate->ok, $bot, $inline, $fim->validate->msg, b('❌ ' . $fim->validate->msg) . '(' . code($fim->validate->bin). ')');
-
-    $res = $fim->BinsSu($fim->validate->bin);
-    $this->Down(!$res['ok'], $bot, $inline, 'Invalid bin', b('❌ '.@$res['error']).'('.i($res['bin']).')');
-    $txt = b('Valid bin:').' '.u($res['bin']).n().b(i('Country:')).' '.$res['country'].' '.$res['flag'].n().b(i('Datas:')). ' ' . $res['vendor'].' - '.$res['type'].' - '.$res['level'].n().b(i('Bank:')).' '.$res['bank'];
+    $bin = $fim->validate->bin;
+    $res = $fim->BinsSu($bin);
+    $this->Down(!$res['ok'], $bot, $inline, 'Invalid bin', b('❌ '.@$res['error']).'('.i($bin).')');
+    $txt = b('Valid bin:').' '.u($bin).n().b(i('Country:')).' '.$res['country'].' '.$res['flag'].n().b(i('Datas:')). ' ' . $res['vendor'].' - '.$res['type'].' - '.$res['level'].n().b(i('Bank:')).' '.$res['bank'];
 
     $bot->answerInlineQuery([
       $inline->Article(

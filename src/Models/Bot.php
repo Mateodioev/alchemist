@@ -156,7 +156,7 @@ class Bot extends BotCore {
    * @param string $inline_query_id Unique identifier for the answered query
    * @param array $results A JSON-serialized array of results for the inline query
    */
-  public function answerInlineQuery(?array $results=null, ?string $inline_query_id=null, ?int $cache_time=null, ?bool $is_personal=null)
+  public function answerInlineQuery(?array $results=null, ?string $inline_query_id=null, int|float $cache_time=null, ?bool $is_personal=null)
   {
     if (is_array($results) && !is_null($results) && count($results) > 50) {
       throw new \Exception("No more than 50 results per query are allowed.");

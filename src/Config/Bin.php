@@ -3,7 +3,7 @@
 namespace Mateodioev\Alchemist\Config;
 
 use Mateodioev\Request\Request;
-
+use function Mateodioev\Alchemist\xQuit;
 class Bin
 {
   private $lastHtml;
@@ -79,14 +79,14 @@ class Bin
 
     return [
       'ok'       => true,
-      'response' => $response,
-      'bin'      => $bin,
-      'country'  => $fim[2] ?? '',
-      'flag'     => Flag::Emoji($fim[2] ?? ''),
-      'vendor'   => $fim[3] ?? '',
-      'type'     => $fim[4] ?? '',
-      'level'    => $fim[5] ?? '',
-      'bank'     => $fim[6] ?? ''
+      'response' => xQuit($response),
+      'bin'      => xQuit($bin),
+      'country'  => xQuit($fim[2]) ?? '',
+      'flag'     => Flag::Emoji(xQuit($fim[2]) ?? ''),
+      'vendor'   => xQuit($fim[3]) ?? '',
+      'type'     => xQuit($fim[4]) ?? '',
+      'level'    => xQuit($fim[5]) ?? '',
+      'bank'     => xQuit($fim[6]) ?? ''
     ];
   }
 }
