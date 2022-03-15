@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Models;
+namespace Mateodioev\Alchemist\Models;
 
-use App\Config\Utils;
+use Mateodioev\Alchemist\Config\Utils;
 use Mateodioev\Request\Request;
 
 class BotCore {

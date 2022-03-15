@@ -1,10 +1,10 @@
 <?php 
 
-namespace App\Controller;
+namespace Mateodioev\Alchemist\Controller;
 
-use App\Cli\App;
-use App\Config\Logger;
-use App\Models\{Bot, BotCoreInline, Chat, Cmd};
+use Mateodioev\Alchemist\Cli\App;
+use Mateodioev\Alchemist\Config\Logger;
+use Mateodioev\Alchemist\Models\{Bot, BotCoreInline, Chat, Cmd};
 use Mateodioev\Db\{Connection, Query};
 
 class Start {
@@ -45,6 +45,7 @@ class Start {
   private function Server(string $time_zone)
   {
     date_default_timezone_set($time_zone);
+    Logger::CreateDir($this->path . '/logs/');
     Logger::Activate($this->path_log, $_ENV['MAX_EXECUTION_TIME']);
   }
 

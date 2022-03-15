@@ -1,6 +1,6 @@
 <?php
 
-use App\Cli\{App, Color};
+use Mateodioev\Alchemist\Cli\{App, Color};
 
 require 'path/to/vendor/autoload.php';
 

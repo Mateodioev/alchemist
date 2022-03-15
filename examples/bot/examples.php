@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Bot;
+use Mateodioev\Alchemist\Models\Bot;
 
 require 'path/to/vendor/autoload.php';
 

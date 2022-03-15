@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/vendor/autoload.php';
 define('APP_PATH', __DIR__);
 
-use App\Controller\Start;
+use Mateodioev\Alchemist\Controller\Start;
 
 $senku = new Start(APP_PATH, true, false, true);
 $bot = $senku->bot;

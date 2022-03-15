@@ -1,7 +1,7 @@
 <?php 
-namespace App\Cli;
+namespace Mateodioev\Alchemist\Cli;
 
-use App\Cli\{Printer, Color};
+use Mateodioev\Alchemist\Cli\{Printer, Color};
 
 class App
 {

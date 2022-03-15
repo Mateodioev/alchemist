@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Cli;
+namespace Mateodioev\Alchemist\Cli;
 
 use PHP_Parallel_Lint\PhpConsoleColor\ConsoleColor;
 

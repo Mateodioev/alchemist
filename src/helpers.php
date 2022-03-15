@@ -1,6 +1,6 @@
 <?php 
 
-namespace App;
+namespace Mateodioev\Alchemist;
 
 /**
  * Replace a bool value in a string
@@ -14,7 +14,7 @@ function BoolString(bool $bool, array $replace = [false => 'False', true => '❌
  */
 function xQuit(string $str='') {
   if (empty($str)) return $str;
-  return \App\Config\Utils::QuitHtml($str);
+  return \Mateodioev\Alchemist\Config\Utils::QuitHtml($str);
 }
 
 

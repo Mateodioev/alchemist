@@ -6,7 +6,7 @@ See [Mateodioev/Db](https://github.com/Mateodioev/db)
 
 ```php
 
-use App\Db\Schema;
+use Mateodioev\Alchemist\Db\Schema;
 use Mateodioev\Db\Query;
 
 $db = new Query;

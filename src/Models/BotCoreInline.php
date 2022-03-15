@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace Mateodioev\Alchemist\Models;
 
-use App\Config\{Utils, UUID};
+use Mateodioev\Alchemist\Config\{Utils, UUID};
 
 /**
  * Crate objects from inline results

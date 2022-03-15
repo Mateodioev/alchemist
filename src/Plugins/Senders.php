@@ -1,9 +1,9 @@
 <?php 
 
-namespace App\Plugins;
+namespace Mateodioev\Alchemist\Plugins;
 
-use App\Config\Bin;
-use function App\{BoolString, b, u, i, n, code};
+use Mateodioev\Alchemist\Config\Bin;
+use function Mateodioev\Alchemist\{BoolString, b, u, i, n, code};
 
 class Senders extends Apis
 {

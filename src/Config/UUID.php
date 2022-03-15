@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Config;
+namespace Mateodioev\Alchemist\Config;
 
 /**
  * @author Andrew Moore ¶

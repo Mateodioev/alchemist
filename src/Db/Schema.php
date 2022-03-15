@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Db;
+namespace Mateodioev\Alchemist\Db;
 
 use Mateodioev\Db\Query;
 

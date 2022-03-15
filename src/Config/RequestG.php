@@ -1,5 +1,7 @@
 <?php 
 
+namespace Mateodioev\Alchemist\Config;
+
 use GuzzleHttp\Client;
 
 /**

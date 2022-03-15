@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Controller;
+namespace Mateodioev\Alchemist\Controller;
 
-use App\Db\Schema;
+use Mateodioev\Alchemist\Db\Schema;
 
 class User extends Schema {
   

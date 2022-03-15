@@ -1,6 +1,6 @@
 <?php require 'path/to/vendor/autoload.php';
 
-use App\Cli\Printer;
+use Mateodioev\Alchemist\Cli\Printer;
 
 $printer = new Printer();
 

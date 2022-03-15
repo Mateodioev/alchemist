@@ -22,9 +22,9 @@
 ## Namespaces
 
 ```php
-use App\Models\Bot; // Extends BotCore
-use App\Models\BotCore;
-use App\Models\BotCoreInline; // Only for inline mode
+use Mateodioev\Alchemist\Models\Bot; // Extends BotCore
+use Mateodioev\Alchemist\Models\BotCore;
+use Mateodioev\Alchemist\Models\BotCoreInline; // Only for inline mode
 
 # use App\Models\{Bot, BotCore, BotCoreInline}; PHP 8
 ```

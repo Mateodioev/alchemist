@@ -1,7 +1,7 @@
 <?php
 require 'path/to/vendor/autoload.php';
 
-use App\Cli\Color;
+use Mateodioev\Alchemist\Cli\Color;
 
 if (php_sapi_name() != 'cli') {
   exit('This script can only be run from the command line.');

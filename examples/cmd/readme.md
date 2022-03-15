@@ -24,7 +24,7 @@
 #### Namespace
 
 ```php
-use App\Models\Cmd;
+use Mateodioev\Alchemist\Models\Cmd;
 ```
 
 Adding a new command
@@ -74,7 +74,7 @@ $cmd->HearInline('comand_name', $callable, $vars);
 ### Default Commands
 
 ```php
-use App\Controller\Start;
+use Mateodioev\Alchemist\Controller\Start;
 
 $senku = new Start(APP_PATH, true, false, true);
 $bot    = $senku->bot;
@@ -112,7 +112,7 @@ Getting chat datas
 #### Namespace
 
 ```php
-use App\Models\Chat;
+use Mateodioev\Alchemist\Models\Chat;
 ```
 
 ### Set webhook update
@@ -120,7 +120,7 @@ use App\Models\Chat;
 ```php
 $up = $bot->GetData();
 # OR
-$alchemist = new \App\Controller\Start(APP_PATH, false, false, true);
+$alchemist = new \Mateodioev\Alchemist\Controller\Start(APP_PATH, false, false, true);
 $up = $alchemist->up;
 
 

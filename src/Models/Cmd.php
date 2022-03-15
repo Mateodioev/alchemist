@@ -1,9 +1,9 @@
 <?php 
 
-namespace App\Models;
+namespace Mateodioev\Alchemist\Models;
 
-use App\Config\Utils;
-use App\Plugins\{Senders, Inline};
+use Mateodioev\Alchemist\Config\Utils;
+use Mateodioev\Alchemist\Plugins\{Senders, Inline};
 
 class Cmd
 {
@@ -206,6 +206,7 @@ class Cmd
       $bot->answerInlineQuery([
         $inline->Article('Unknow problem', $inline->InputMessageContent(Utils::QuitHtml($e->getMessage())), 'Problem')
       ]);
+      die;
     }
   }
 }

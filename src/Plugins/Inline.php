@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Plugins;
+namespace Mateodioev\Alchemist\Plugins;
 
-use App\Config\Bin;
-use App\Models\{Bot, BotCoreInline};
-use function App\{BoolString, b, u, i, n, code};
+use Mateodioev\Alchemist\Config\Bin;
+use Mateodioev\Alchemist\Models\{Bot, BotCoreInline};
+use function Mateodioev\Alchemist\{b, u, i, n, code};
 
 class Inline {
   

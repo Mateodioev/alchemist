@@ -1,7 +1,7 @@
 <?php 
 require 'path/to/vendor/autoload.php';
 
-use App\Cli\App;
+use Mateodioev\Alchemist\Cli\App;
 
 $app = new App();
 

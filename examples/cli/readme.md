@@ -11,9 +11,9 @@
 ## Namespaces
 
 ```php
-use App\Cli\App;
-use App\Cli\Color;
-use App\Cli\Printer;
+use Mateodioev\Alchemist\Cli\App;
+use Mateodioev\Alchemist\Cli\Color;
+use Mateodioev\Alchemist\Cli\Printer;
 ```
 
 ## App

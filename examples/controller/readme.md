@@ -15,7 +15,7 @@ Note:
 ## Namespace
 
 ```php
-use App\Controller\Start;
+use Mateodioev\Alchemist\Controller\Start;
 ```
 
 ## Usage

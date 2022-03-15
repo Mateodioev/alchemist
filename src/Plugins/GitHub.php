@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Plugins;
+namespace Mateodioev\Alchemist\Plugins;
 
 use Mateodioev\Request\Request;
 

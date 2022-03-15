@@ -1,5 +1,5 @@
 <?php 
-namespace App\Cli;
+namespace Mateodioev\Alchemist\Cli;
 
 class Printer
 {

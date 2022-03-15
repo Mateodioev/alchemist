@@ -1,8 +1,8 @@
 <?php
 require 'path/to/vendor/autoload.php';
 
-use App\Models\Bot;
-use App\Models\BotCoreInline;
+use Mateodioev\Alchemist\Models\Bot;
+use Mateodioev\Alchemist\Models\BotCoreInline;
 
 $bot = new Bot('YourBotToken');
 $coreInline = new BotCoreInline;

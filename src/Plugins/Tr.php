@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Plugins;
+namespace Mateodioev\Alchemist\Plugins;
 
-use App\Config\Utils;
+use Mateodioev\Alchemist\Config\Utils;
 use Mateodioev\Translate;
 
 class Tr {
