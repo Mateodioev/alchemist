@@ -14,6 +14,7 @@ class BotCore {
   private $res;
   private $result;
   private $opt = []; // Optional config payload
+  private bool $throw = false; // Throw exception on error
 
   public $content;
   public $update;
@@ -36,7 +37,7 @@ class BotCore {
   /**
    * Send request to telegram api
    */
-  public function request(string $method, ?array $datas=[], bool $throw = false, bool $decode = true):mixed
+  public function request(string $method, ?array $datas=[], bool $decode = true):mixed
   {
     $url = $this->endpoint . $method;
     $datas = array_merge($datas, $this->opt);
@@ -49,7 +50,7 @@ class BotCore {
       error_log('[bot] Method ' . $method . ' failed: ' . json_encode($datas));
       error_log('[bot] Response: ' . $this->res);
       error_log('[bot] Description: ' . $this->result->description);
-      if ($throw) {
+      if ($this->throw) {
         throw new \Exception('Fail '.$method.': '.$this->result->description);
       }
     }
@@ -84,5 +85,11 @@ class BotCore {
     $this->opt = $opt;
   }
 
-  
+  /**
+   * Set throw exception on error in request
+   */
+  public function setThrow(bool $set = false): void
+  {
+    $this->throw = $set;
+  }
 }

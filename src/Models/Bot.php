@@ -8,9 +8,6 @@ namespace Mateodioev\Alchemist\Models;
  */
 class Bot extends BotCore {
   
-  /**  Parameters */
-  private array $payload = [];
-
   public function __construct(string $bot_token)
   {
     parent::__construct($bot_token);
@@ -18,8 +15,8 @@ class Bot extends BotCore {
 
   public function SendAction(string $action, ?string $chat_id=null)
   {
-    $this->payload = ['chat_id' => $chat_id ?? Chat::getChatId(), 'action' => $action];
-    return $this->request('sendChatAction', $this->payload);
+    $payload = ['chat_id' => $chat_id ?? Chat::getChatId(), 'action' => $action];
+    return $this->request('sendChatAction', $payload);
   }
 
   /**
@@ -28,7 +25,7 @@ class Bot extends BotCore {
    */
   public function SendMsg(string $txt, ?string $chat_id=null, ?string $msg_id=null, $button = '', $parse_mode = 'HTML')
   {
-    $this->payload = [
+    $payload = [
       'chat_id' => $chat_id ?? Chat::getChatId(),
       'reply_to_message_id' => $msg_id ?? Chat::getMsgId(),
       'text' => $txt,
@@ -36,9 +33,9 @@ class Bot extends BotCore {
       'reply_markup' => json_encode($button),
     ];
 
-    $this->SendAction('typing', $this->payload['chat_id']);
+    $this->SendAction('typing', $payload['chat_id']);
 
-    return $this->request('sendMessage', $this->payload);
+    return $this->request('sendMessage', $payload);
   }
 
   /**
@@ -47,7 +44,7 @@ class Bot extends BotCore {
    */
   public function EditMsg(string $txt, string $msg_id, ?string $chat_id=null, $button = '', $parse_mode = 'HTML')
   {
-    $this->payload = [
+    $payload = [
       'chat_id' => $chat_id ?? Chat::getChatId(),
       'message_id' => $msg_id,
       'text' => $txt,
@@ -55,7 +52,7 @@ class Bot extends BotCore {
       'reply_markup' => json_encode($button),
     ];
 
-    return $this->request('editMessageText', $this->payload);
+    return $this->request('editMessageText', $payload);
   }
 
   /**
@@ -64,8 +61,8 @@ class Bot extends BotCore {
    */
   public function DelMsg(string $chat_id, string $msg_id)
   {
-    $this->payload = ['chat_id' => $chat_id, 'message_id' => $msg_id];
-    return $this->request('deleteMessage', $this->payload);
+    $payload = ['chat_id' => $chat_id, 'message_id' => $msg_id];
+    return $this->request('deleteMessage', $payload);
   }
 
   /**
@@ -76,7 +73,7 @@ class Bot extends BotCore {
   {
     if (file_exists($document)) $document = new \CURLFile(realpath($document));
     
-    $this->payload = [
+    $payload = [
       'chat_id' => $chat_id ?? Chat::getChatId(),
       'reply_to_message_id' => $msg_id ?? Chat::getMsgId(),
       'caption' => $caption,
@@ -84,8 +81,8 @@ class Bot extends BotCore {
       'reply_markup' => json_encode($button),
       'document' => $document,
     ];
-    $this->SendAction('upload_document', $this->payload['chat_id']);
-    return $this->request('sendDocument', $this->payload);
+    $this->SendAction('upload_document', $payload['chat_id']);
+    return $this->request('sendDocument', $payload);
   }
 
   /**
@@ -96,7 +93,7 @@ class Bot extends BotCore {
   {
     if (file_exists($document)) $document = new \CURLFile(realpath($document));
 
-    $this->payload = [
+    $payload = [
       'chat_id' => $chat_id ?? Chat::getChatId(),
       'reply_to_message_id' => $msg_id ?? Chat::getMsgId(),
       'caption' => $caption,
@@ -105,8 +102,8 @@ class Bot extends BotCore {
       'photo' => $document,
       'allow_sending_without_reply' => true,
     ];
-    $this->SendAction('upload_photo', $this->payload['chat_id']);
-    return $this->request('sendPhoto', $this->payload);
+    $this->SendAction('upload_photo', $payload['chat_id']);
+    return $this->request('sendPhoto', $payload);
   }
   
   /**
@@ -121,7 +118,7 @@ class Bot extends BotCore {
    */
   public function sendVenue(float $lat, float $long, string $title, string $addr, ?string $chat_id=null, ?string $msg_id=null)
   {
-    $this->payload = [
+    $payload = [
       'latitude' => $lat,
       'longitude' => $long,
       'title' => $title,
@@ -129,7 +126,7 @@ class Bot extends BotCore {
       'chat_id' => $chat_id ?? Chat::getChatId(),
       'reply_to_message_id' => $msg_id ?? Chat::getMsgId(),
     ];
-    return $this->request('sendVenue', $this->payload);
+    return $this->request('sendVenue', $payload);
   }
   
   /**
@@ -138,8 +135,8 @@ class Bot extends BotCore {
    */
   public function Me()
   {
-    $this->payload = [];
-    return $this->request('getMe', $this->payload);
+    $payload = [];
+    return $this->request('getMe', $payload);
   }
 
   /**
@@ -148,8 +145,8 @@ class Bot extends BotCore {
    */
   public function GetFile(string $file_id)
   {
-    $this->payload = ['file_id' => $file_id];
-    return $this->request('getFile', $this->payload);
+    $payload = ['file_id' => $file_id];
+    return $this->request('getFile', $payload);
   }
 
   /**
@@ -164,12 +161,12 @@ class Bot extends BotCore {
     if (is_array($results) && !is_null($results) && count($results) > 50) {
       throw new \Exception("No more than 50 results per query are allowed.");
     }
-    $this->payload = [
+    $payload = [
       'inline_query_id' => $inline_query_id ?? Chat::getInlineId(),
       'results' => json_encode($results),
       'cache_time' => $cache_time,
       'is_personal' => $is_personal
     ];
-    return $this->request('answerInlineQuery', $this->payload);
+    return $this->request('answerInlineQuery', $payload);
   }
 }
