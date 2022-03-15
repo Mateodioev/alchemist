@@ -10,29 +10,42 @@ function BoolString(bool $bool, array $replace = [false => 'False', true => '❌
 }
 
 /**
+ * Quit html from strings
+ */
+function xQuit(string $str='') {
+  if (empty($str)) return $str;
+  return \App\Config\Utils::QuitHtml($str);
+}
+
+
+/**
  * Bold
  */
 function b(string $str) {
-  return '<b>'.$str.'</b>';
+  return '<b>'.xQuit($str).'</b>';
 }
+
 /**
  * Underline
  */
 function u(string $str) {
-  return '<u>'.$str.'</u>';
+  return '<u>'.xQuit($str).'</u>';
 }
+
 /**
  * Italic
  */
 function i(string $str) {
-  return '<i>'.$str.'</i>';
+  return '<i>'.xQuit($str).'</i>';
 }
+
 /**
  * Monospace
  */
 function code(string $str) {
-  return '<code>'.$str.'</code>';
+  return '<code>'.xQuit($str).'</code>';
 }
+
 /**
  * Line break
  */
