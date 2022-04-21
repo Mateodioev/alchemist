@@ -1,4 +1,5 @@
 # Alchemist Ace - Telegram bot 🤖
+[![CodeFactor](https://www.codefactor.io/repository/github/mateodioev/alchemist/badge)](https://www.codefactor.io/repository/github/mateodioev/alchemist)
 
 ![The alchemist - Ed Cardone](examples/images/ed-cardone-gps.jpg)
 
