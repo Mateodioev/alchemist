@@ -7,11 +7,6 @@ namespace Mateodioev\Alchemist\Models;
  * Bot methods
  */
 class Bot extends BotCore {
-  
-  public function __construct(string $bot_token)
-  {
-    parent::__construct($bot_token);
-  }
 
   public function SendAction(string $action, ?string $chat_id=null)
   {
